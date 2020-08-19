@@ -1,0 +1,182 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Shop</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        .navbar li{
+            display: inline;
+            padding-left: 10px;
+        }
+    </style>
+    
+</head>
+<body>
+    <div id="home">
+        <div class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+            <div class="container fluid">
+                 <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shirt.html">SHIRTS</a></li>
+                    <li><a href="Jacket.html">JACKETS</a></li>
+                    <li><a href="socks.html">SOCKS</a></li>
+                </ul>
+                <div class="cart">
+                    <ul class="cart">
+                        <li class="cart" style="text-align: right;">Your cart: {{ cart }}</li>
+                    </ul>
+                </div>
+               
+             </div>
+        </div>
+        <div id="imgSlides" class="carousel slide" data-ride="carousel">
+            <ul class="carousel-indicators">
+                <li data-target="#imgSlides" data-slide-to="0" class="active"></li>
+                <li data-target="#imgSlides" data-slide-to="1"></li>
+                <li data-target="#imgSlides" data-slide-to="2"></li>
+            </ul>
+       
+         <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img class="d-block w-100" src="slide0.jfif" alt="First slide">
+                <div class="carousel-caption">
+                    <h1 class="display-2" style="color: gray;">WELCOME</h1>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img class="d-block w-100" src="slide1.jfif" alt="Second slide">
+              </div>
+              <div class="carousel-item">
+                <img class="d-block w-100" src="slide2.jfif" alt="Third slide">
+              </div>
+            </div>
+          
+        </div>
+    
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script>
+            $("#carousel").carousel();
+        </script>
+        <div class="container">
+            <div class="header">
+                <div class="welcome text-center">
+                    <p>WIDEST RANGE OF<a href="shirt.html"> SHIRT</a></p>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <img src="shirt1.jfif">
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <img src="shirt2.jfif">
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <img src="shirt3.jfif">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <button v-on:click="addCart">Add to Cart</button>
+                    <button v-on:click="removeCart">Remove from cart</button>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <button v-on:click="addCart">Add to Cart</button>
+                    <button v-on:click="removeCart">Remove from cart</button>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <button v-on:click="addCart">Add to Cart</button>
+                    <button v-on:click="removeCart">Remove from cart</button>
+                </div>
+
+            </div>
+            <div class="header">
+                <div class="welcome text-center">
+                    <p>WIDEST RANGE OF<a href="Jacket.html"> JACKETS</a></p>
+
+                </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <img src="jacket1.jfif">
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <img src="jacket2.jfif">
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <img src="jacket3.jfif">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <button v-on:click="addCart">Add to Cart</button>
+                    <button v-on:click="removeCart">Remove from cart</button>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <button v-on:click="addCart">Add to Cart</button>
+                    <button v-on:click="removeCart">Remove from cart</button>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <button v-on:click="addCart">Add to Cart</button>
+                    <button v-on:click="removeCart">Remove from cart</button>
+                </div>
+
+            </div>
+            <div class="header">
+                <div class="welcome text-center">
+                    <p>WIDEST RANGE OF <a href="socks.html"> SOCKS</a></p>
+
+                </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <img src="img2.jfif">
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <img src="redimg.jfif">
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <img src="sock3.jfif">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <button v-on:click="addCart">Add to Cart</button>
+                    <button v-on:click="removeCart">Remove from cart</button>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <button v-on:click="addCart">Add to Cart</button>
+                    <button v-on:click="removeCart">Remove from cart</button>
+                </div>
+                <div class="col-sm-12 col-md-4 col-lg-4">
+                    <button v-on:click="addCart">Add to Cart</button>
+                    <button v-on:click="removeCart">Remove from cart</button>
+                </div>
+
+            </div>
+            
+
+        </div>
+    </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+        <script>
+            var home = new Vue({
+                el:'#home',
+                data:{
+                    cart:0,
+                },
+                methods:{
+                addCart: function(){
+                    this.cart+=1
+
+                },
+                removeCart: function(){
+                    this.cart-=1
+                },
+                }
+            })
+
+        </script>
+
+</body>
+</html>
