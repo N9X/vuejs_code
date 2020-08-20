@@ -6,8 +6,17 @@
 </head>
 <body>
     <div id="like">
-        <label for="like">Like</label>
-        <button v-on:click="count++">{{ count }}👍👍👍.</button>
+        <div id="button-counter">
+            <img src="like1.png">
+            <label for="like"></label>
+            <button-counter></button-counter>
+        </div>
+        <div cid="button-counter">
+            <img src="like1.png">
+            <label for="like">Like</label>
+            <button-counter></button-counter>
+        </div>
+        
 
     </div>
   
@@ -16,11 +25,17 @@
     <script>
         Vue.component('button-counter', {
             data: function () {
+                
                 return {
                 count: 0,
                 
+                
             }
+            
             },
+            template:`
+                <button v-on:click="count++">👍{{ count }}</button>
+                `
         
         
     });
