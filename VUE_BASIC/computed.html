@@ -1,0 +1,30 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>basic</title>
+</head>
+<body>
+    <div id="exmaple">
+        <p>Original  message: {{ fullName }}</p>
+        <p></p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+    <script>
+       var vm = new Vue({
+         el: '#exmaple',
+         data: {
+            firstName: 'Nirmit',
+            lastName: 'Patel',
+    
+        },
+        computed:{
+            fullName:function(){
+                return this.firstName+' '+this.lastName
+            }
+        }
+    })
+    </script>
+    
+</body>
+</html>

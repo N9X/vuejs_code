@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JACKETS</title>
+    <title>SHIRTS</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <style>
         .navbar li{
@@ -10,25 +10,26 @@
             padding-left: 10px;
         }
     </style>
-    
 </head>
 <body>
     <div class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
         <div class="container fluid">
             <ul>
-                <li><a href="index.html">Home</a></li>
-                 <li><a href="shirt.html">SHIRTS</a></li>
-                <li><a href="Jacket.html">JACKETS</a></li>
-                <li><a href="socks.html">SOCKS</a></li>
-            </ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="shirt.html">SHIRTS</a></li>
+               <li><a href="Jacket.html">JACKETS</a></li>
+               <li><a href="socks.html">SOCKS</a></li>
+           </ul>
+          
         </div>
     </div>
     <div id="jack">
         <div class="product-content">
             <div class="heading">
                 <h1>{{ product }}</h1>
-            </div>
+             </div>
             <div class="row">
+               
                 <div class="product-img col-sm-12 col-md-3 col-lg-3">
                     <img v-bind:src="image" alt="Jacket image 1 ">
                 </div>
@@ -36,17 +37,18 @@
                     <p>{{ description }}</p>
                     <ul>
                         <li v-for="detail in details">
-                            {{ detail }}
+                        {{ detail }}
                         </li>
-                        </ul>
-                    <div v-for="variant in variants" :key="variant.variantId">
+                     </ul>
+                     <div v-for="variant in variants" :key="variant.variantId">
                         <p @mouseover="updateProduct(variant.variantImage)">{{ variant.variantColor }}</p>
                     </div>
                     <button v-on:click="addCart" :disabled="!inventory">Add to Cart</button>
-                    <button v-on:click="removeCart"disabled="cart== 0">Remove from cart</button>
+                    <button v-on:click="removeCart" :disabled="cart== 0">Remove from cart</button>
                     <div class="cart">
                         <p>Cart: {{ cart }}</p>
                     </div>
+                
                 </div>
             </div>
         </div>
@@ -60,27 +62,27 @@
         var jack = new Vue({
             el:'#jack',
             data:{
-                product:'Jackets',
-                description:'A coat is a garment worn on the upper body by either gender, for warmth or fashion. Coats typically have long sleeves and are open down the front, closing by means of buttons, zippers, hook-and-loop fasteners, toggles, a belt, or a combination of some of these. Other possible features include collars, shoulder straps and hoods.',
-                image:'./jacket1.jfif',
-                inventory:false,
-                details: ["Gender Netural","Orignal Leather","Available at a discounted price"],
+                product:'SHIRT',
+                description:'Shirt is a cloth garment for the upper body (from the neck to the waist). Originally an undergarment worn exclusively by men, it has become, in American English, a catch-all term for a broad variety of upper-body garments and undergarments. ... A shirt can also be worn with a necktie under the shirt collar.',
+                image:'./shirt1.jfif',
+                inventory:12,
+                details: ["New Informal Collection","100% Cotton","Available at a discounted price"],
                 cart: 0,
                 variants:[
                     {
                         variantId: 9993,
-                        variantColor:"Brown",
-                        variantImage:'./jacket1.jfif',
+                        variantColor:"Denim",
+                        variantImage:'./shirt1.jfif',
                     },
                     {
                         variantId:9994,
-                        variantColor:'Gray',
-                        variantImage:'./jacket2.jfif',
+                        variantColor:'Dark Green',
+                        variantImage:'./shirt2.jfif',
                     },
                     {
                         variantId:9995,
-                        variantColor:'Blue',
-                        variantImage:'./jacket3.jfif',
+                        variantColor:'Gray',
+                        variantImage:'./shirt3.jfif',
                     },
                 ],
             },
@@ -98,5 +100,6 @@
             }
         })
     </script>
+    
 </body>
 </html>
