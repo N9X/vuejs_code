@@ -1,0 +1,213 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socks</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        .navbar li{
+            display: inline;
+            padding-left: 10px;
+        }
+    </style>
+    
+</head>
+<body>
+   
+    <div id="app">
+        <product :premium="premium" @add-to-cart="updateCart"></product>
+        <div class="cart">
+            <p>Cart: ({{cart. length }})</p>
+        </div>
+    </div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+        Vue.component('product',{
+            props:{
+                premium: {
+                    type: Boolean,
+                    required:true
+                },
+            },
+            template:
+            `
+            <div class="row">
+                <div class="product-img col-md-3">
+                    <img v-bind:src="image">
+                </div>
+                <div class="product col-md-6">
+                    <h1>{{ title }}</h1>
+                    <p v-if="seen" >{{ description }}</p>
+                    <p v-if="inventory > 10">IN STOCK</p>
+                    <p v-else-if = 'inventory <= 10 && inventory > 0'>Almost Sold Out</p>
+                    <p v-else>Out Of Stock</p>
+                    <p>Delivery: {{ del }}</p>
+    
+                    <ul>
+                        <li v-for="detail in details">
+                            {{ detail }}
+                        </li>
+                    </ul>
+                    <div v-for="(variant,index) in variants" :key="variant.variantId">
+                        <p @mouseover="updateProduct(index)">{{ variant.variantColor }}</p>
+                    </div>
+                    <button v-on:click="addToCart" :disabled="!inventory">Add to cart</button>
+                    <br>
+                    <br>
+                    <product-review @review-submitted="addReview"></product-review>
+                </div>
+                <div class="container">
+                    <h2> Reviews </h2>
+                    <p v-if="!reviews.length"> There are no review </p>
+                    <ul>
+                    <li v-for="review in reviews">
+                    <p>{{ review.name }}</p>
+                    <p>{{ review.rating }}</p>
+                    <p>{{ review.review }}</p> 
+                    </li>
+                    </ul>
+
+                </div>
+                
+            </div>
+
+            `,
+            data(){
+                return{
+                    product: 'Socks',
+                    description:"Socks are often worn on a person's feet. They absorb sweat and help to keep the foot dry. Socks also give comfort to people's feet and keep them warm in cold weather.",
+                    brand: "high quality",
+                    selectedVariant: 0,
+                    seen: true ,
+                    reviews:[],
+                    
+                    details: ["90% Cotton","10% Polyster", "Gender-neutral"],
+                    variants: [
+                        {
+                            variantId:9991,
+                            variantColor: "Gray",
+                            vImage:'./img2.jfif',
+                            variantQuantity:0,
+                        },
+                        {
+                            variantId:9992,
+                            variantColor: "Black",
+                            vImage:'./redimg.jfif',
+                            variantQuantity:10,
+                        },
+                    
+                    ],
+                
+
+                }
+            },
+            methods:{
+                addToCart: function(){
+                    this.$emit('add-to-cart',this.variants[this.selectedVariant].variantId)
+
+                },
+                updateProduct: function (index){
+                    this.selectedVariant = index
+                    console.log(index)
+                },
+                addReview(productReview){
+                    this.reviews.push(productReview)
+                }
+            },
+            computed:{
+                title(){
+                    return this.brand +' ' + this.product
+                },
+                image(){
+                    return this.variants[this.selectedVariant].vImage
+                },
+                inventory(){
+                    return this.variants[this.selectedVariant].variantQuantity
+                },
+                del(){
+                    if(this.premium){
+                        return "Free"
+                    }
+                    return 499
+                }
+            },
+
+        })
+
+        Vue.component('product-review',{
+            template: 
+            `
+            <form class="review-form" @submit.prevent="onSubmit">
+                <p>
+                <label for="name">Name:</label>
+                <input id="name" required v-model="name" placeholder="name">
+                </p>
+      
+                <p>
+                <label for="review">Review:</label>      
+                <textarea id="review" required v-model="review"></textarea>
+                 </p>
+      
+                <p>
+                    <label for="rating">Rating:</label>
+                    <select id="rating" v-model.number="rating">
+                        <option>5</option>
+                        <option>4</option>
+                        <option>3</option>
+                        <option>2</option>
+                        <option>1</option>
+                    </select>
+                </p>
+          
+                <p>
+                    <input type="submit" value="Submit">  
+                 </p>    
+    
+            </form>
+             
+            `,
+            data(){
+                return{
+                    name:null,
+                    review:null,
+                    rating:null,
+                }
+            },
+            methods:{
+                onSubmit(){
+                    let productReview={
+                        name:this.name,
+                        review:this.review,
+                        rating:this.rating,
+                    }
+                    this.$emit('review-submitted', productReview)
+                    this.name=null,
+                    this.review=null,
+                    this.rating=null
+                }
+            }
+        })
+
+
+        var app = new Vue({
+            el: '#app',
+            data:{
+                premium : true,
+                cart: [],
+            },
+            methods:{
+                updateCart: function(id){
+                    this.cart.push(id)
+                }
+            }
+           
+        })
+
+    
+    </script>
+</body>
+</html>
